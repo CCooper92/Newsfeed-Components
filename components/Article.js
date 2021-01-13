@@ -85,9 +85,64 @@ const data = [
 
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
-          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`,
+    
+    title: 'This is my new title',
+    date: 'jan 12th, 2021',
+    firstParagraph: `I just added`,
+
+secondParagraph: `more objects to the array`,
+
+thirdParagraph: `My components worked`,
   }
 ];
+const articles = document.querySelector('.articles')
+
+function articleMaker({title, date, firstParagraph, secondParagraph, thirdParagraph}) {
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const articlePara1 = document.createElement('p');
+  const articlePara2 = document.createElement('p');
+  const articlePara3 = document.createElement('p');
+  const expandButton = document.createElement('span');
+
+
+  article.appendChild(articleTitle);
+  article.appendChild(articlePara1);
+  article.appendChild(articlePara2);
+  article.appendChild(articlePara3);
+  article.appendChild(expandButton);
+  article.appendChild(articleDate);
+
+  articleDate.classList.add('date');
+  expandButton.classList.add('expandButton');
+  article.classList.add('article');
+  
+
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  articlePara1.textContent = firstParagraph;
+  articlePara2.textContent = secondParagraph;
+  articlePara3.textContent = thirdParagraph;
+  expandButton.textContent = "+";
+
+
+
+expandButton.addEventListener('click', event => {
+  article.classList.toggle('article-open');
+});
+return article;
+}
+
+
+const articleElements = data.map(articleElement => {
+  return articleMaker(articleElement);
+});
+
+articleElements.forEach(articleItem => {
+ articles.appendChild(articleItem);
+});
 
 /*
   Step 1: Write a component called 'articleMaker' to create an article.
